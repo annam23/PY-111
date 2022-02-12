@@ -6,7 +6,7 @@ from typing import Any
 
 class Queue:
     def __init__(self):
-        self.queue = []
+        self._queue = []
 
     def enqueue(self, elem: Any) -> None:
         """
@@ -15,7 +15,7 @@ class Queue:
         :param elem: element to be added
         :return: Nothing
         """
-        self.queue.append(elem)
+        self._queue.append(elem)
 
     def dequeue(self) -> Any:
         """
@@ -23,8 +23,8 @@ class Queue:
 
         :return: dequeued element
         """
-        if self.queue:
-            return self.queue.pop()
+        if self._queue:
+            return self._queue.pop(0)
 
     def peek(self, ind: int = 0) -> Any:
         """
@@ -33,8 +33,8 @@ class Queue:
         :param ind: index of element (count from the beginning)
         :return: peeked element
         """
-        if ind < len(self.queue):
-            return self.queue[ind]
+        if ind < len(self._queue):
+            return self._queue[ind]
 
     def clear(self) -> None:
         """
@@ -42,4 +42,4 @@ class Queue:
 
         :return: None
         """
-        self.queue.clear()
+        self._queue.clear()

@@ -26,7 +26,7 @@ class PriorityQueue:
 
         :return: dequeued element
         """
-        for priority in self._queue_priority:
+        for priority in sorted(self._queue_priority.keys()):
             if self._queue_priority:
                 return self._queue_priority[priority].pop(0)
 

@@ -20,7 +20,7 @@ def binary_search(elem: int, arr: Sequence) -> Optional[int]:
         middle_index = (start_index + end_index) // 2
         if arr[middle_index] < elem:
             start_index = middle_index +1
-        elif arr[middle_index] <= elem:
+        else:
             end_index_index = middle_index
 
     return start_index if arr[start_index] == elem else None

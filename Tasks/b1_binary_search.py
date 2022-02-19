@@ -16,17 +16,19 @@ def binary_search(elem: int, arr: Sequence) -> Optional[int]:
     #Определяем, как делить последовательность
     middle_index = (start_index + end_index) // 2
 
-    #Если попали сразу:
-    if arr[middle_index] == elem:
-        return middle_index
 
-    #Условие, пока возможен поиск
-    while start_index <= end_index:
+    #Условие, пока возможен поиск и при повторах возьмем 1 вхождение элемента
+    while start_index <= end_index and arr[middle_index] != elem:
 
         if arr[middle_index] > elem:
             end_index = middle_index - 1
         elif arr[middle_index] < elem:
             start_index = middle_index + 1
+
+    #Если искомый - средний:
+    if arr[middle_index] == elem:
+        return middle_index
+
 
 
 

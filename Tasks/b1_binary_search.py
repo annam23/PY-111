@@ -13,20 +13,20 @@ def binary_search(elem: int, arr: Sequence) -> Optional[int]:
     start_index = 0
     end_index = len(arr) - 1
 
+    #Определяем, как делить последовательность
+    middle_index = (start_index + end_index) // 2
+
+    #Если попали сразу:
+    if arr[middle_index] == elem:
+        return middle_index
+
     #Условие, пока возможен поиск
     while start_index <= end_index:
 
-    #Определяем, как делить последовательность
-        middle_index = (start_index + end_index) // 2
-        middle_elem = arr[middle_index]
-
-    #Рассматриваем сценарии поиска:
-        if middle_elem == elem:
-            return middle_elem
-        elif middle_elem > elem:
-            end_index = middle_index
-        elif middle_elem < elem:
-            start_index = middle_index
+        if arr[middle_index] > elem:
+            end_index = middle_index - 1
+        elif arr[middle_index] < elem:
+            start_index = middle_index + 1
 
 
 

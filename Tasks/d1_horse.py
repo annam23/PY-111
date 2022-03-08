@@ -8,11 +8,30 @@ def calculate_paths(shape: (int, int), point: (int, int)) -> int:
     """
     board = [[0] * shape[0] for i in range(shape[1])]
     board[0][0] = 1
+    CONST_WAY = 2
 
-    for i in range(0, len(board)):
-        for j in range(0, len(board[i])):
-            print(board[i][j], end=' ')
+    for row in range(len(board)):
+        for elem in range(len(board[row])):
+            print(board[row][elem], end=' ')
+
+            if board[row][elem] != 0:
+                if row + 1 < len(board) and elem + 2 < len(board[row]):
+                    board[row + 1][elem + 2] += CONST_WAY * board[row][elem]
+                if row + 2 < len(board) and elem + 1 < len(board[row]):
+                    board[row + 2][elem + 1] += CONST_WAY * board[row][elem]
+                if row + 1 < len(board) and elem >= 2:
+                    board[row + 1][elem - 2] += CONST_WAY * board[row][elem]
+                if row + 2 < len(board) and elem >= 1:
+                    board[row + 2][elem - 1] += CONST_WAY * board[row][elem]
+
         print()
 
+    return board[point[0]][point[1]]
 
-calculate_paths((3,6), (1,1))
+
+
+
+
+
+
+

@@ -13,8 +13,16 @@ def sort(container: List[int]) -> List[int]:
         return []
 
     pivot = choice(container)
-    left = [value for value in container if value < pivot]
-    pivot_v = [value for value in container if value == pivot]
-    right = [value for value in container if value > pivot]
+    left = []
+    right = []
+    pivot_cont = []
 
-    return sort(left) + pivot_v + sort(right)
+    for value in container:
+        if value < pivot:
+            left.append(value)
+        elif value > pivot:
+            right.append(value)
+        else:
+            pivot_cont.append(value)
+
+    return sort(left) + pivot_cont + sort(right)

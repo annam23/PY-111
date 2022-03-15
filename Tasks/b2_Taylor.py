@@ -2,7 +2,8 @@
 Taylor series
 """
 from typing import Union
-TOCHNOST_N = 100
+TOCHNOST = 100
+
 
 def ex(x: Union[int, float]) -> float:
     """
@@ -11,13 +12,13 @@ def ex(x: Union[int, float]) -> float:
     :param x: x value
     :return: e^x value
     """
-    res = 1
-    factorial = 1
 
-    for elem in range(1, TOCHNOST_N):
+    value, res, factorial = 1, 1, 1
+
+    for elem in range(1, TOCHNOST):
         factorial *= elem
-        res += (x ** elem) / factorial
-
+        value *= x
+        res += value / factorial
     return res
 
 
@@ -28,14 +29,12 @@ def sinx(x: Union[int, float]) -> float:
     :param x: x value
     :return: sin(x) value
     """
-    res = x
+    value, res = x, x
     fact = 1
-    for elem in range(1, 10):
+    for elem in range(1, TOCHNOST):
         fact *= (2 * elem + 1)
-        res += ((-1) ** elem) * (x ** (2 * elem + 1)) / fact
-        print(fact, res)
+        value *= (-1) ** elem * x ** 2
+        res += value / fact
 
     return res
 
-ex(6)
-sinx(5)

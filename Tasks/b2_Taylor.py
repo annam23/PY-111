@@ -29,12 +29,12 @@ def sinx(x: Union[int, float]) -> float:
     :param x: x value
     :return: sin(x) value
     """
-    value, res = x, x
+    value, res = x, 0
     fact = 1
-    for elem in range(1, TOCHNOST):
-        fact *= (2 * elem + 1)
-        value *= (-1) ** elem * x ** 2
+    for elem in range(1, 50):
+        fact *= (2 * elem + 1) * 2 * elem
+        value *= (-1) * x ** 2
         res += value / fact
 
-    return res
+    return x + res
 

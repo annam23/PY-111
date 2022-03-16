@@ -4,12 +4,30 @@ or with dicts (smth like {'key': 0, value: 123, 'left': {...}, 'right':{...}})
 """
 
 from typing import Any, Optional, Tuple
-# import networkx as nx
+import networkx as nx
+
+
+class Node:
+    def __init__(self, key: int, value: Any):
+        self.key = key
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def make_node(self):
+        node_ = {
+            "key": self.key,
+            "value": self.value,
+            "left": self.left,
+            "right": self.right
+        }
+        return node_
 
 
 class BinarySearchTree:
+
     def __init__(self):
-        ...
+        self.root = None
 
     def insert(self, key: int, value: Any) -> None:
         """
@@ -19,8 +37,11 @@ class BinarySearchTree:
         :param value: value associated with key
         :return: None
         """
-        print(key, value)
-        return None
+        if self.root is None:
+            self.root = Node(key, value)
+        else:
+            current_node = self.root
+            current_key = Node(key, value)
 
     def remove(self, key: int) -> Optional[Tuple[int, Any]]:
         """
@@ -48,4 +69,4 @@ class BinarySearchTree:
 
         :return: None
         """
-        return None
+        self.root = None

@@ -7,24 +7,40 @@ from typing import Any, Optional, Tuple
 import networkx as nx
 
 
-class Node:
-    def __init__(self, key: int, value: Any):
-        self.key = key
-        self.value = value
-        self.left = None
-        self.right = None
-
-    def make_node(self):
-        node_ = {
-            "key": self.key,
-            "value": self.value,
-            "left": self.left,
-            "right": self.right
-        }
-        return node_
-
-
 class BinarySearchTree:
+    class Node:
+        def __init__(self, key: int, value: Any):
+            self.key = key
+            self.value = value
+            self.left = None
+            self.right = None
+
+
+        @property
+        def left(self) -> Optional["Node"]:
+            return self.left
+
+        @staticmethod
+        def is_valid_node(value):
+            if not isinstance(value, (Node, type(None))):
+                raise ValueError
+            return True
+        @property
+        def right(self) -> Optional["Node"]:
+            return self.right
+
+        @left.setter
+        def left(self, value):
+            if self.is_valid_node(value):
+                self._left = value
+
+        @right.setter
+        def right(self, value):
+            if self.is_valid_node(value):
+                self._right = value
+
+        def __str__(self):
+            return f"{self.key}: (Left: {self.left} Right: {self.right})"
 
     def __init__(self):
         self.root = None
@@ -37,11 +53,29 @@ class BinarySearchTree:
         :param value: value associated with key
         :return: None
         """
+        new_node = self.Node(key, value)
+
+        #Определяем, есть ли корень и создаем его
         if self.root is None:
-            self.root = Node(key, value)
+            self.root = new_node
         else:
             current_node = self.root
-            current_key = Node(key, value)
+            while True:
+                if new_node > current_node:
+                    if current_node.right is None:
+                        current_node.right = new_node
+                        break
+                    current_node = current_node.right()
+
+                elif new_node < current_node:
+                    if current_node.left is None:
+                        current_node.left = new_node
+                        break
+                    current_node = current_node.left()
+
+                else:
+                    current_node.value = value
+                    break
 
     def remove(self, key: int) -> Optional[Tuple[int, Any]]:
         """
@@ -50,8 +84,12 @@ class BinarySearchTree:
         :param key: key to be removed
         :return: deleted (key, value) pair or None
         """
-        print(key)
-        return None
+        if self.root is None:
+            return None
+        else:
+            current_node = self.root
+            while True:
+
 
     def find(self, key: int) -> Optional[Any]:
         """
@@ -69,4 +107,4 @@ class BinarySearchTree:
 
         :return: None
         """
-        self.root = None
+        self.root.clear()

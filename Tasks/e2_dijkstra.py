@@ -9,5 +9,20 @@ def dijkstra_algo(g: nx.DiGraph, starting_node: Hashable) -> Mapping[Hashable, U
     :param starting_node: starting node from g
     :return: dict like {'node1': 0, 'node2': 10, '3': 33, ...} with path costs, where nodes are nodes from g
     """
-    print(g, starting_node)
-    return dict()
+    #Входные условия: список посещенных узлов, начальные стоимости
+    visited_nodes = {node: False for node in g}
+    costs = {node: float("inf") for node in g}
+    costs[starting_node] = 0
+
+    while visited_nodes is not True:
+        visited_nodes[starting_node] = True
+        neighbours = g[starting_node]
+        cost = costs[visited_nodes]
+        for n in neighbours.keys():
+             new_cost = cost + neighbours[n]
+             if costs[n] > new_cost:
+
+
+
+
+

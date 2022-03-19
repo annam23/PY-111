@@ -138,20 +138,19 @@ class BinarySearchTree:
 
         # Оба поддерева есть
         else:
-            # Удаление текущего узла
-            del_node = current_node
+            # Поиск приемника
             new_current_node = current_node.right
-
-            # Поиск минимального потомка
             while True:
                 if new_current_node.left is None:
                     break
                 new_current_node = new_current_node.left
 
-            # Переприсвоение текущему узлу минимального найденного
-            current_node = new_current_node
-            return del_
+            # Удаление приемника на старом месте
+            current_node.right = self.remove(new_current_node.key)
 
+            # Перезаписываем значение текущего узла на найденное
+            current_node.key, current_node.value = new_current_node.key, new_current_node.value
+            return del_
 
     def find(self, key: int) -> Optional[Any]:
         """
@@ -190,3 +189,20 @@ class BinarySearchTree:
         self._root = None
         return None
 
+def main():
+    tree = BinarySearchTree()
+    tree.insert(10, 10)
+    tree.insert(1,1)
+    tree.insert(4,4)
+    tree.insert(42,42)
+    tree.insert(7, 7)
+    tree.insert(3, 3)
+    tree.insert(5, 5)
+    tree.insert(30, 30)
+    tree.insert(50, 50)
+    tree.insert(55, 55)
+    tree.remove(42)
+    print(tree._root)
+
+if __name__ == "__main__":
+    main()

@@ -138,12 +138,17 @@ class BinarySearchTree:
 
         # Оба поддерева есть
         else:
+            # Удаление текущего узла
+            del_node = current_node
             new_current_node = current_node.right
+
+            # Поиск минимального потомка
             while True:
-                if new_current_node.right and new_current_node.left is None:
+                if new_current_node.left is None:
                     break
                 new_current_node = new_current_node.left
 
+            # Переприсвоение текущему узлу минимального найденного
             current_node = new_current_node
             return del_
 

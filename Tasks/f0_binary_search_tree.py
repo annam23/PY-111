@@ -146,7 +146,7 @@ class BinarySearchTree:
                 new_current_node = new_current_node.left
 
             # Удаление приемника на старом месте
-            current_node.right = self.remove(new_current_node.key)
+            current_node.key, current_node.value = self.remove(new_current_node.key)
 
             # Перезаписываем значение текущего узла на найденное
             current_node.key, current_node.value = new_current_node.key, new_current_node.value
@@ -201,7 +201,7 @@ def main():
     tree.insert(30, 30)
     tree.insert(50, 50)
     tree.insert(45, 45)
-    tree.remove(50)
+    tree.remove(4)
     print(tree._root)
 
 if __name__ == "__main__":

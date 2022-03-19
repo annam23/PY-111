@@ -123,17 +123,17 @@ class BinarySearchTree:
 
         # Если у поддерева нет одного из детей, удаляем узел и заменяем потомком
         elif current_node.right is None or current_node.left is None:
-            if prev_node.right == current_node:
-                prev_node.right = current_node.right
+            if current_node.left is None:
+                if prev_node.left == current_node:
+                    prev_node.left = current_node.right
+                else:
+                    prev_node.right = current_node.right
                 return del_
-            if prev_node.right == current_node:
-                prev_node.right = current_node.left
-                return del_
-            if prev_node.left == current_node:
-                prev_node.left = current_node.left
-                return del_
-            if prev_node.left == current_node:
-                prev_node.left = current_node.right
+            else:
+                if prev_node.left == current_node:
+                    prev_node.left = current_node.left
+                else:
+                    prev_node.right = current_node.left
                 return del_
 
         # Оба поддерева есть
@@ -200,8 +200,8 @@ def main():
     tree.insert(5, 5)
     tree.insert(30, 30)
     tree.insert(50, 50)
-    tree.insert(55, 55)
-    tree.remove(42)
+    tree.insert(45, 45)
+    tree.remove(50)
     print(tree._root)
 
 if __name__ == "__main__":
